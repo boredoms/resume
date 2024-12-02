@@ -1,9 +1,11 @@
 % Based (but completely redesigned) on Resume in Latex Template by Sourabh Bajaj
-\documentclass[letterpaper, 10pt]{article}
+\documentclass[a4paper, 10pt]{article}
 
 % font
 \usepackage[T1]{fontenc}
 \usepackage[sfdefault]{noto}
+\usepackage{ifthen}
+\newboolean{darkmode}
 % \usepackage[default]{raleway}
 
 \pdfgentounicode=1
@@ -37,7 +39,7 @@
 % arg 2 = position title (subtitle (in italics)
 % arg 3 = date
 \newcommand{\workHeader}[3]{
-\noindent \large{\textbf{\textcolor{TextColor}{#1}}} \hfill \normalsize{#3}\vspace{2pt}\\
+\noindent \large{\textbf{\textcolor{text-color}{#1}}} \hfill \normalsize{#3}\vspace{2pt}\\
 	\textit{#2}\vspace{-2pt}
 }
 
@@ -55,23 +57,35 @@
 % line spacing
 
 % colors
-% \definecolor{blue}{RGB}{14, 100, 237} % change the blue color if this one is not to your liking
+
+% this variable defines whether to render dark mode
+\setboolean{darkmode}{true}
+
+\ifthenelse{\boolean{darkmode}}{
+	\definecolor{text-color}{HTML}{c8d9da}
+	\definecolor{highlight}{HTML}{eff7f8}
+	\definecolor{secondary}{HTML}{f0fafb}
+	\definecolor{link-color}{HTML}{eff7f8}
+	\definecolor{page-color}{HTML}{1b2333}
+}{
+	\definecolor{text-color}{HTML}{c8d9da}
+	\definecolor{highlight}{HTML}{eff7f8}
+	\definecolor{secondary}{HTML}{f0fafb}
+	\definecolor{link-color}{HTML}{eff7f8}
+	\definecolor{page-color}{HTML}{1b2333}
+
+}
+
+\pagecolor{page-color}
+\color{text-color}
 
 
-\definecolor{PageColor}{HTML}{1b2333}
-\definecolor{TextColor}{HTML}{c8d9da}
-\definecolor{HeaderColor}{HTML}{eff7f8}
-\definecolor{blue}{HTML}{eff7f8}
-\definecolor{white}{HTML}{f0fafb}
-
-\pagecolor{PageColor}
-\color{TextColor}
 
 \hypersetup{
     colorlinks=true,
-    linkcolor=HeaderColor,
-    filecolor=HeaderColor,
-    urlcolor=TextColor,
+    linkcolor=link-color,
+    filecolor=highlight,
+    urlcolor=text-color,
 }
 
 % indent space
@@ -80,10 +94,10 @@
 % Sections formatting
 \titleformat{\section}{
 \vspace{-2pt}\raggedright\Large
-}{}{0em}{}[\color{white}\titlerule \vspace{-5pt}]
+}{}{0em}{}[\color{secondary}\titlerule \vspace{-5pt}]
 
 % bolder
-\newcommand{\boldlarger}[1]{{\large\textbf{\color{white}{#1}}}}
+\newcommand{\boldlarger}[1]{{\large\textbf{\color{secondary}{#1}}}}
 % \newcommand{\boldlarger}[1]{{\textbf{\color{white}{#1}}}}
 \newcommand{\justlarge}[1]{{\large \textbf{#1}}}
 
@@ -93,22 +107,28 @@
 \begin{center} 
 	{\Huge \textbf{Maximilian V\"otsch}}\\
 	\vspace{1px}
- \color{TextColor}
+ \color{text-color}
 	% "footnotes" (icon + link)
 	{
-		\color{white}
-            \faicon{linkedin} \iconSpace \href{https://www.linkedin.com/in/Joe-Smith/}{Joe-Smith}
+		\color{secondary}
+            \faicon{linkedin} \iconSpace \href{https://www.linkedin.com/in/maximilian-vötsch/}{maximilian-vötsch}
 		\hfill
 		\href{mailto:max@voets.ch}{max@voets.ch} \vspace{2pt} \iconSpace \faicon{envelope} 
         }\\
 	{
-            \color{white}
-		\faicon{github} \iconSpace \href{https://github.com/boredoms}{boredoms}
-            \hfill
-		\href{https://voets.ch/}{voets.ch} \iconSpace \faicon{globe} 
+        \color{secondary}
+			\faicon{github} \iconSpace \href{https://github.com/boredoms}{boredoms}
+        \hfill
+		\href{https://voets.ch/}{voets.ch} \vspace{2pt} \iconSpace \faicon{globe} 
 		% \hSpace 
 		% \faicon{map-marker} \iconSpace
 		% Regina, SK
+		}\\
+	{
+		\color{secondary}
+			\faicon{gitlab} \iconSpace \href{https://gitlab.com/voetschm}{voetschm}
+		\hfill
+		Vienna, Austria \vspace{2pt} \iconSpace \faicon{map-marker}
 	}
 \end{center}
 \spaceCollapse
@@ -117,9 +137,8 @@
 
 
 % ------------- short description ------------- %
-\section{\color{blue} \textbf{Summary}}
+\section{\color{highlight} \textbf{Summary}}
 \secStartSpace
-
 \begin{addmargin}[0.5em]{1em}
 	Outgoing PhD student interested in the design and implementation of algorithms.
 	PhD work was focused on engineering algorithms for unsupervised learning problems.
@@ -127,27 +146,27 @@
 	Excellent communication skills and experienced in international collaboration.
 \end{addmargin}
 \secEndSpace
+\secEndSpace
 % ------------- end experience ------------- %
 
 
 % ------------- work experience ------------- %
-\section{\color{blue} \textbf{Work Experience}}
+\section{\color{highlight} \textbf{Work Experience}}
 \secStartSpace
-
 \begin{addmargin}[0.5em]{1em}
 	\workHeader{University of Vienna}{Prae-Doc Assistant}{Feb 2021 - Jan 2025}
 	\begin{itemize}
 		\item Part of the Theory and Applications of Algorithms (TAA) group
-		\item Extensive experience in teaching and mentoring students % mention concrete experience
+		\item Using tools and methods of classical algorithms research to design algorithms for unsupervised learning objectives and implement them in C++
+		\item Extensive experience in supervising and teaching students (mathematics, algorithms, data structures) % mention concrete experience
 %		\item Helped clean the floors in a team of \justlarge{3}
 %		      \bulletSpace
 %            \item Wrote \boldlarger{testable} and \boldlarger{well documented} code in Node.js/Nest.js backend and React frontend
 	\end{itemize}
-		
 	% \workHeader{Examplar 2}{Founder}{May 2022 - Jan 2023}
 	% \begin{itemize}
 	% 	\item Created an example for users, most don't understand
-		      \bulletSpace
+	%	      \bulletSpace
 	%	\item Created another example for users, most don't understand
 	% \end{itemize}
 	% \workSubHeader{Chair}{Sept 2021 - May 2022}
@@ -161,40 +180,36 @@
 
 
 % ------------- projects ------------- %
-\section{\color{blue} \textbf{Projects}}
+\section{\color{highlight} \textbf{Projects}}
 \secStartSpace
 
 \begin{addmargin}[0.5em]{1em}
 
 		
 	% ------------- project 1 ------------- %
-	\projectHeader{XCut}{https://gitlab.com/Joe-Smith}{ 2023 - Present}
+	\projectHeader{XCut (published @ KDD 2024)}{https://gitlab.com/vietaa/xcut}{May 2023 - Present}
 		
 	\noindent A novel graph clustering algorithm implemented using random walks and the theory of expander decomposition.
 	The algorithm sparsifies a graph to a tree and uses this to solve the normalized cut problem.
 	\spaceCollapse
 	\begin{itemize}
-		\item \textbf{Technology/Tools:} C++, CMake, clang-tidy, Python, pandas, pyplot
+		\item \textbf{Technologies:} C++, CMake, Python, pandas, pyplot
 		      \bulletSpace
-		\item Source and working demo: \faicon{github} \href{https://github.com/Joe-Smith}{\underline{Joe-Smith.com/emojis-finder}}
-		\item Published at KDD 2024
 	\end{itemize}
 
      \vspace{8pt}
 	% ------------- end project 1 ------------- %
  
 	% ------------- project 2 ------------- %
-	\projectHeader{PRONE}{https://github.com/Joe-Smith}{March 2023 - Present}
+	\projectHeader{PRONE (published @ NeurIPS 2023)}{https://github.com/boredoms/prone}{February 2023 - Present}
 		
-	\noindent A novel algorithm for solving Euclidean $k$-means or creating coresets for downstream applicaitons. 
+	\noindent A novel algorithm for solving Euclidean $k$-means and creating coresets for downstream applications. 
 	Made available as a Python package for the data science community.
 	Main implementation in C++, with Cython wrappers provided to make it available to data scientists using python.
 	\spaceCollapse
 	\begin{itemize}
-		\item \textbf{Technology/Tools:} C++, Python, Cython, numpy, pandas, pyplot
+		\item \textbf{Technologies:} C++, Python, Cython, numpy, pandas, pyplot
 		      \bulletSpace
-		\item Source and working demo: \faicon{github} \href{https://github.com/Joe-Smith}{\underline{Joe-Smith.com/emojis-finder}}
-		\item Published at NeurIPS 2023
 	\end{itemize}
 	% ------------- end project 2 ------------- %
 \end{addmargin}
@@ -204,16 +219,19 @@
 
 
 % ------------- education ------------- %
-\section{\color{blue} \textbf{Education}}
+\section{\color{highlight} \textbf{Education}}
 \secStartSpace
 
 \begin{addmargin}[0.5em]{1em}
-	\large\textbf{University of Vienna}\hfill \normalsize{Feb 2021 - (expected) March 2025}\\
-	\setlength\parindent{1cm} Dr.techn. Computer Science, Thesis Title: Efficient Algorithms for Problems in Clustering and Fairness, supervised by Monika Henzinger and Kathrin Hanauer\\
-	\large\textbf{University of Vienna}\hfill \normalsize{ - Aug 2021}\\
-	\setlength\parindent{1cm} M.Sc. Mathematics\\
-	\large\textbf{University of Vienna}\hfill \normalsize{Oct 2015 - }\\
-	\setlength\parindent{1cm} B.Sc. Mathematics\\
+	\large\textbf{University of Vienna}\hfill \normalsize{February 2021 - (expected) March 2025}\\
+	\setlength\parindent{1cm} Dr. techn. Computer Science\\
+	Supervisors: Monika Henzinger and Kathrin Hanauer\\
+	\vspace{8pt}\hspace{-2pt}
+	Thesis Title: Efficient Algorithms for Problems in Clustering and Fairness\\
+	\large\textbf{University of Vienna}\hfill \normalsize{October 2014 - August 2020}\\
+	\setlength\parindent{1cm} B.Sc. and M.Sc. Mathematics\\
+%	\large\textbf{University of Vienna}\hfill \normalsize{October 2014 - March 2018}\\
+%	 \setlength\parindent{1cm} B.Sc. Mathematics\\
 \end{addmargin}
 \secEndSpace
 \secEndSpace
@@ -221,14 +239,14 @@
 
 
 % ------------- skills ------------- %
-\section{\color{blue} \textbf{Skills}}
+\section{\color{highlight} \textbf{Skills}}
 \secStartSpace
 
 \begin{addmargin}[0.5em]{1em}
 	\setstretch{1.125}
 	\noindent \textbf{Languages:} C++, Python, Haskell, Rust, Java, German (native), English (fluent) \\
-	\noindent \textbf{Technology:} git, unix shell, cmake, poetry \\
-	\noindent \textbf{Libraries:} Blaze, OpenMP, OpenMPI, pandas, numpy, scipy-learn, pytorch \\
+	\noindent \textbf{Technology:} Linux, git, unix shell, cmake, poetry, clang-tidy \\
+	\noindent \textbf{Libraries:} Blaze, OpenMP, OpenMPI, pandas, numpy, scikit-learn, pytorch \\
 \end{addmargin}
 \secEndSpace
 \secEndSpace
@@ -236,23 +254,25 @@
 
 
 % ------------- achievements ------------- %
-\section{\color{blue} \textbf{Achievements}}
+\section{\color{highlight} \textbf{Awards}}
 \secStartSpace
-
-% for natHACKS specificially
-\hypersetup{
-    colorlinks=true,
-    linkcolor=HeaderColor,
-    filecolor=HeaderColor,
-    urlcolor=HeaderColor,
-}
 
 \begin{addmargin}[0.5em]{1em}
     \begin{itemize}[itemsep=-2.25pt, leftmargin=1.5em]
-        \item Joe Award \hfill Sept 2021 - Sept 2021
-        \item Top of the Class \hfill April 2014 - April 2019
+		\item KDD 2024 Audience Appreciation Award \hfill August 2024
     \end{itemize}
 \end{addmargin}
+\secEndSpace
+\secEndSpace
 % ------------- end achievements ------------- %
+
+% ------------- personal ------------- %
+\section{\color{highlight} \textbf{Personal Interests}}
+\secStartSpace
+\begin{addmargin}[0.5em]{1em}
+	Bouldering, Analog and Digital Photography, Electronics, Guitar
+\end{addmargin}
+% ------------- end personal ------------- %
+
 
 \end{document}
