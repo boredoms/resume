@@ -15,10 +15,10 @@ all: resume.pdf
 # you might have.
 
 %.tex: %.raw
-        ./raw2tex $< > $@
+	./raw2tex $< > $@
 
 %.tex: %.dat
-        ./dat2tex $< > $@
+	./dat2tex $< > $@
 
 # MAIN LATEXMK RULE
 
@@ -29,8 +29,8 @@ all: resume.pdf
 # -interaction=nonstopmode keeps the pdflatex backend from stopping at a
 # missing file reference and interactively asking you for an alternative.
 
-resume.pdf: MyDoc.tex
-        latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make resume.tex
+resume.pdf: resume.tex
+	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make resume.tex
 
 clean:
-        latexmk -CA
+	latexmk -CA

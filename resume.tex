@@ -91,7 +91,7 @@
 
 % ------------- header ------------- %
 \begin{center} 
-	{\Huge \textbf{Joe Smith}}\\
+	{\Huge \textbf{Maximilian V\"otsch}}\\
 	\vspace{1px}
  \color{TextColor}
 	% "footnotes" (icon + link)
@@ -99,13 +99,13 @@
 		\color{white}
             \faicon{linkedin} \iconSpace \href{https://www.linkedin.com/in/Joe-Smith/}{Joe-Smith}
 		\hfill
-		\href{mailto:joesmith@gmail.com}{joesmith@gmail.com} \vspace{2pt} \iconSpace \faicon{envelope} 
+		\href{mailto:max@voets.ch}{max@voets.ch} \vspace{2pt} \iconSpace \faicon{envelope} 
         }\\
 	{
             \color{white}
-		\faicon{github} \iconSpace \href{https://github.com/Joe-Smith}{Joe-Smith}
+		\faicon{github} \iconSpace \href{https://github.com/boredoms}{boredoms}
             \hfill
-		\href{https://joesmith.com/}{joesmith.com} \iconSpace \faicon{globe} 
+		\href{https://voets.ch/}{voets.ch} \iconSpace \faicon{globe} 
 		% \hSpace 
 		% \faicon{map-marker} \iconSpace
 		% Regina, SK
@@ -116,28 +116,44 @@
 % ------------- end header ------------- %
 
 
+% ------------- short description ------------- %
+\section{\color{blue} \textbf{Summary}}
+\secStartSpace
+
+\begin{addmargin}[0.5em]{1em}
+	Outgoing PhD student interested in the design and implementation of algorithms.
+	PhD work was focused on engineering algorithms for unsupervised learning problems.
+	Passionate about writing efficient code and low-level optimization.
+	Excellent communication skills and experienced in international collaboration.
+\end{addmargin}
+\secEndSpace
+% ------------- end experience ------------- %
+
+
 % ------------- work experience ------------- %
 \section{\color{blue} \textbf{Work Experience}}
 \secStartSpace
 
 \begin{addmargin}[0.5em]{1em}
-	\workHeader{Joe's Garage}{Full-Stack Floor Cleaner}{May 2023 - Aug 2023}
+	\workHeader{University of Vienna}{Prae-Doc Assistant}{Feb 2021 - Jan 2025}
 	\begin{itemize}
-		\item Helped clean the floors in a team of \justlarge{3}
-		      \bulletSpace
-            \item Wrote \boldlarger{testable} and \boldlarger{well documented} code in Node.js/Nest.js backend and React frontend
+		\item Part of the Theory and Applications of Algorithms (TAA) group
+		\item Extensive experience in teaching and mentoring students % mention concrete experience
+%		\item Helped clean the floors in a team of \justlarge{3}
+%		      \bulletSpace
+%            \item Wrote \boldlarger{testable} and \boldlarger{well documented} code in Node.js/Nest.js backend and React frontend
 	\end{itemize}
 		
-	\workHeader{Examplar 2}{Founder}{May 2022 - Jan 2023}
-	\begin{itemize}
-		\item Created an example for users, most don't understand
+	% \workHeader{Examplar 2}{Founder}{May 2022 - Jan 2023}
+	% \begin{itemize}
+	% 	\item Created an example for users, most don't understand
 		      \bulletSpace
-		\item Created another example for users, most don't understand
-	\end{itemize}
-	\workSubHeader{Chair}{Sept 2021 - May 2022}
-	\begin{itemize}
-		\item Was literally a chair and productivity was up \justlarge{120\%}
-	\end{itemize}
+	%	\item Created another example for users, most don't understand
+	% \end{itemize}
+	% \workSubHeader{Chair}{Sept 2021 - May 2022}
+	% \begin{itemize}
+	% 	\item Was literally a chair and productivity was up \justlarge{120\%}
+	% \end{itemize}
 \end{addmargin}
 \secEndSpace
 % ------------- end experience ------------- %
@@ -152,21 +168,33 @@
 
 		
 	% ------------- project 1 ------------- %
-	\projectHeader{Emoji Finder}{https://github.com/Joe-Smith}{Feb 2021 - Present}
+	\projectHeader{XCut}{https://gitlab.com/Joe-Smith}{ 2023 - Present}
 		
-	\noindent A React application that finds the emojis you want via a search bar but better.
+	\noindent A novel graph clustering algorithm implemented using random walks and the theory of expander decomposition.
+	The algorithm sparsifies a graph to a tree and uses this to solve the normalized cut problem.
+	\spaceCollapse
+	\begin{itemize}
+		\item \textbf{Technology/Tools:} C++, CMake, clang-tidy, Python, pandas, pyplot
+		      \bulletSpace
+		\item Source and working demo: \faicon{github} \href{https://github.com/Joe-Smith}{\underline{Joe-Smith.com/emojis-finder}}
+		\item Published at KDD 2024
+	\end{itemize}
+
      \vspace{8pt}
 	% ------------- end project 1 ------------- %
  
 	% ------------- project 2 ------------- %
-	\projectHeader{Emoji Finder 2}{https://github.com/Joe-Smith}{Feb 2021 - Present}
+	\projectHeader{PRONE}{https://github.com/Joe-Smith}{March 2023 - Present}
 		
-	\noindent A React application that finds the emojis you want via a search bar but better
+	\noindent A novel algorithm for solving Euclidean $k$-means or creating coresets for downstream applicaitons. 
+	Made available as a Python package for the data science community.
+	Main implementation in C++, with Cython wrappers provided to make it available to data scientists using python.
 	\spaceCollapse
 	\begin{itemize}
-		\item \textbf{Technology/Tools:} React, JavaScript, CSS, HTML
+		\item \textbf{Technology/Tools:} C++, Python, Cython, numpy, pandas, pyplot
 		      \bulletSpace
 		\item Source and working demo: \faicon{github} \href{https://github.com/Joe-Smith}{\underline{Joe-Smith.com/emojis-finder}}
+		\item Published at NeurIPS 2023
 	\end{itemize}
 	% ------------- end project 2 ------------- %
 \end{addmargin}
@@ -180,8 +208,12 @@
 \secStartSpace
 
 \begin{addmargin}[0.5em]{1em}
-	\large\textbf{University of America}\hfill \normalsize{Sept 2019 - April 2023}\\
-	\setlength\parindent{1cm} B.Sc. Computing Science with Specialization
+	\large\textbf{University of Vienna}\hfill \normalsize{Feb 2021 - (expected) March 2025}\\
+	\setlength\parindent{1cm} Dr.techn. Computer Science, Thesis Title: Efficient Algorithms for Problems in Clustering and Fairness, supervised by Monika Henzinger and Kathrin Hanauer\\
+	\large\textbf{University of Vienna}\hfill \normalsize{ - Aug 2021}\\
+	\setlength\parindent{1cm} M.Sc. Mathematics\\
+	\large\textbf{University of Vienna}\hfill \normalsize{Oct 2015 - }\\
+	\setlength\parindent{1cm} B.Sc. Mathematics\\
 \end{addmargin}
 \secEndSpace
 \secEndSpace
@@ -194,9 +226,9 @@
 
 \begin{addmargin}[0.5em]{1em}
 	\setstretch{1.125}
-	\noindent \textbf{Languages:} Python, JavaScript/TypeScript, CSS/SCSS, UwULang \\
-	\noindent \textbf{Technology:} AWS, Google Cloud Platform, Firebase, Git, Jenkins, Kubernetes, Unreal engine, Docker, Unity, Figma \\
-	\noindent \textbf{Libraries:} React, React Native, Django, Flask, Electron, Express, NestJS, Next.js, NodeJS, GraphQL, Tailwind
+	\noindent \textbf{Languages:} C++, Python, Haskell, Rust, Java, German (native), English (fluent) \\
+	\noindent \textbf{Technology:} git, unix shell, cmake, poetry \\
+	\noindent \textbf{Libraries:} Blaze, OpenMP, OpenMPI, pandas, numpy, scipy-learn, pytorch \\
 \end{addmargin}
 \secEndSpace
 \secEndSpace
