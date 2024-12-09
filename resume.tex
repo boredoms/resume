@@ -59,7 +59,7 @@
 % colors
 
 % this variable defines whether to render dark mode
-\setboolean{darkmode}{true}
+\setboolean{darkmode}{false}
 
 \ifthenelse{\boolean{darkmode}}{
 	\definecolor{text-color}{HTML}{c8d9da}
@@ -68,18 +68,15 @@
 	\definecolor{link-color}{HTML}{eff7f8}
 	\definecolor{page-color}{HTML}{1b2333}
 }{
-	\definecolor{text-color}{HTML}{c8d9da}
-	\definecolor{highlight}{HTML}{eff7f8}
-	\definecolor{secondary}{HTML}{f0fafb}
+	\definecolor{text-color}{HTML}{333333}
+	\definecolor{highlight}{HTML}{2c446f}
+	\definecolor{secondary}{HTML}{2c446f}
 	\definecolor{link-color}{HTML}{eff7f8}
-	\definecolor{page-color}{HTML}{1b2333}
-
+	\definecolor{page-color}{HTML}{ffffff}
 }
 
 \pagecolor{page-color}
 \color{text-color}
-
-
 
 \hypersetup{
     colorlinks=true,
@@ -105,7 +102,7 @@
 
 % ------------- header ------------- %
 \begin{center} 
-	{\Huge \textbf{Maximilian V\"otsch}}\\
+	{\Huge \color{highlight} \textbf{Maximilian V\"otsch}}\\
 	\vspace{1px}
  \color{text-color}
 	% "footnotes" (icon + link)
@@ -141,9 +138,9 @@
 \secStartSpace
 \begin{addmargin}[0.5em]{1em}
 	Outgoing PhD student interested in the design and implementation of algorithms.
-	PhD work was focused on engineering algorithms for unsupervised learning problems.
-	Passionate about writing efficient code and low-level optimization.
-	Excellent communication skills and experienced in international collaboration.
+	My PhD work was focused on engineering algorithms for unsupervised learning problems.
+	I'm passionate about writing efficient code and low-level optimization.
+	I have excellent communication skills and am experienced in international collaboration.
 \end{addmargin}
 \secEndSpace
 \secEndSpace
@@ -156,9 +153,9 @@
 \begin{addmargin}[0.5em]{1em}
 	\workHeader{University of Vienna}{Prae-Doc Assistant}{Feb 2021 - Jan 2025}
 	\begin{itemize}
-		\item Part of the Theory and Applications of Algorithms (TAA) group
-		\item Using tools and methods of classical algorithms research to design algorithms for unsupervised learning objectives and implement them in C++
-		\item Extensive experience in supervising and teaching students (mathematics, algorithms, data structures) % mention concrete experience
+		\item Part of the Theory and Applications of Algorithms (TAA) group, where I used methods of classical algorithms research to design algorithms for unsupervised learning objectives and implemented them in C++
+		\item Extensive experience in supervising and teaching students in mathematics, algorithms, data structures % mention concrete experience
+		\item Experience in oganizing projects, conferences and workshops
 %		\item Helped clean the floors in a team of \justlarge{3}
 %		      \bulletSpace
 %            \item Wrote \boldlarger{testable} and \boldlarger{well documented} code in Node.js/Nest.js backend and React frontend
@@ -187,10 +184,10 @@
 
 		
 	% ------------- project 1 ------------- %
-	\projectHeader{XCut (published @ KDD 2024)}{https://gitlab.com/vietaa/xcut}{May 2023 - Present}
+	\projectHeader{XCut (published at KDD 2024)}{https://gitlab.com/vietaa/xcut}{May 2023 - Present}
 		
-	\noindent A novel graph clustering algorithm implemented using random walks and the theory of expander decomposition.
-	The algorithm sparsifies a graph to a tree and uses this to solve the normalized cut problem.
+	\noindent A graph clustering algorithm implemented using random walks and the theory of expander decomposition.
+	The algorithm sparsifies a graph to a tree and uses this to solve the normalized cut problem. Current state of the art solver for this problem.
 	\spaceCollapse
 	\begin{itemize}
 		\item \textbf{Technologies:} C++, CMake, Python, pandas, pyplot
@@ -201,9 +198,9 @@
 	% ------------- end project 1 ------------- %
  
 	% ------------- project 2 ------------- %
-	\projectHeader{PRONE (published @ NeurIPS 2023)}{https://github.com/boredoms/prone}{February 2023 - Present}
+	\projectHeader{PRONE (published at NeurIPS 2023)}{https://github.com/boredoms/prone}{February 2023 - Present}
 		
-	\noindent A novel algorithm for solving Euclidean $k$-means and creating coresets for downstream applications. 
+	\noindent New algorithm for solving Euclidean $k$-means and creating coresets for downstream applications in time $O(n \log n)$. 
 	Made available as a Python package for the data science community.
 	Main implementation in C++, with Cython wrappers provided to make it available to data scientists using python.
 	\spaceCollapse
