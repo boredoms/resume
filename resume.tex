@@ -1,11 +1,13 @@
 % Based (but completely redesigned) on Resume in Latex Template by Sourabh Bajaj
 \documentclass[a4paper, 10pt]{article}
 
+% language setup
+\usepackage[main=english,ngerman]{babel}
+
 % font
 \usepackage[T1]{fontenc}
 \usepackage[sfdefault]{noto}
-\usepackage{ifthen}
-\newboolean{darkmode}
+\usepackage{xifthen}
 % \usepackage[default]{raleway}
 
 \pdfgentounicode=1
@@ -34,6 +36,8 @@
 \newcommand{\secEndSpace}{\vspace{5pt}}
 \newcommand{\spaceCollapse}{\vspace{-2pt}}
 
+\newcommand{\ifthen}[2]{\ifthenelse{#1}{#2}{}}
+
 % use the macro for work experience header
 % arg 1 = header title
 % arg 2 = position title (subtitle (in italics)
@@ -54,13 +58,75 @@
 \noindent\href{#2}{\large\textbf{#1}} \hfill \normalsize#3 \vspace{2pt}
 }
 
+% commands for bilingual document
+\newboolean{xen}
+
+% kinda hacky, but it lets me do command line options
+\ifdefined\isenglish
+	\setboolean{xen}{true}
+\fi
+
+\newboolean{xde}
+
+\ifdefined\isgerman
+	\setboolean{xde}{true}
+\fi
+
+\newcommand{\en}[1]{\ifthenelse{\boolean{xen}}{#1}{}}
+\newcommand{\de}[1]{\ifthenelse{\boolean{xde}}{
+	\begin{otherlanguage}{ngerman}
+	#1
+	\end{otherlanguage}
+	}{}}
+
 % line spacing
 
-% colors
 
-% this variable defines whether to render dark mode
+% Switch implementation - from Thev (https://tex.stackexchange.com/questions/64131/implementing-switch-cases)
+\newcommand{\ifequals}[3]{\ifthenelse{\equal{#1}{#2}}{#3}{}}
+\newcommand{\case}[2]{#1 #2} % Dummy, so \renewcommand has something to overwrite...
+\newenvironment{switch}[1]{\renewcommand{\case}{\ifequals{#1}}}{}
+
+% % Example: Pick color by ID
+% \newcommand{\incolor}[2]{
+%     \begin{switch}{#1}
+%         \case{1}{\color{red}}
+%         \case{2}{\color{blue}}
+%         \case{3}{\color{green}}
+%         \case{4}{\color{black}}
+%         #2
+%     \end{switch}
+% }
+
+
+% booleans to enable certain features
+
+% enable dark mode
+\newboolean{darkmode}
 \setboolean{darkmode}{false}
 
+% choose which header style (
+% % 1 - 3 lines
+% % 2 - 2 lines compact
+% % 3 - 2 lines, no location/website 
+\newcommand{\headerStyle}{2}
+
+% include executive summary
+\newboolean{summary}
+\setboolean{summary}{false}
+
+% include awards in their own section
+\newboolean{awards}
+\setboolean{awards}{false}
+
+% include "personal" section
+\newboolean{personal}
+\setboolean{personal}{true}
+
+
+% this variable defines whether to render dark mode
+
+% colors
 \ifthenelse{\boolean{darkmode}}{
 	\definecolor{text-color}{HTML}{c8d9da}
 	\definecolor{highlight}{HTML}{eff7f8}
@@ -101,61 +167,110 @@
 \begin{document}
 
 % ------------- header ------------- %
+
+% Name
 \begin{center} 
 	{\Huge \color{highlight} \textbf{Maximilian V\"otsch}}\\
 	\vspace{1px}
- \color{text-color}
-	% "footnotes" (icon + link)
-	{
+
+% Icon header style
+\begin{switch}{\headerStyle}
+	\case{1}{
+ 	{
 		\color{secondary}
             \faicon{linkedin} \iconSpace \href{https://www.linkedin.com/in/maximilian-vötsch/}{maximilian-vötsch}
 		\hfill
 		\href{mailto:max@voets.ch}{max@voets.ch} \vspace{2pt} \iconSpace \faicon{envelope} 
-        }\\
+    }\\
 	{
         \color{secondary}
 			\faicon{github} \iconSpace \href{https://github.com/boredoms}{boredoms}
         \hfill
 		\href{https://voets.ch/}{voets.ch} \vspace{2pt} \iconSpace \faicon{globe} 
-		% \hSpace 
-		% \faicon{map-marker} \iconSpace
-		% Regina, SK
-		}\\
+	}\\
 	{
 		\color{secondary}
 			\faicon{gitlab} \iconSpace \href{https://gitlab.com/voetschm}{voetschm}
 		\hfill
-		Vienna, Austria \vspace{2pt} \iconSpace \faicon{map-marker}
+		\href{https://voets.ch}{Vienna, Austria} \vspace{2pt}\iconSpace\faicon{map-marker} 
 	}
+	}
+
+
+	\case{2}{
+		\vspace{0.25em}
+
+        \color{secondary}
+		\begin{tabular}{llr}
+			\faicon{envelope}  \iconSpace \href{mailto:max@voets.ch}{max@voets.ch} & 
+			\faicon{globe} \iconSpace \href{https://voets.ch/}{voets.ch} & 
+			\faicon{map-marker} \iconSpace \href{https://voets.ch}{Vienna, Austria} \\
+            \faicon{linkedin}  \iconSpace \href{https://www.linkedin.com/in/maximilian-vötsch/}{maximilian-vötsch} & 
+			\faicon{github}  \iconSpace \href{https://github.com/boredoms}{boredoms} & 
+			\faicon{gitlab}  \iconSpace \href{https://gitlab.com/voetschm}{voetschm} \\
+		\end{tabular}
+	}
+
+
+	\case{3}{
+ 	{
+		\color{secondary}
+            \faicon{linkedin} \iconSpace \href{https://www.linkedin.com/in/maximilian-vötsch/}{maximilian-vötsch}
+		\hfill
+		\href{mailto:max@voets.ch}{max@voets.ch} \vspace{2pt} \iconSpace \faicon{envelope} 
+    }\\
+	{
+        \color{secondary}
+			\faicon{github} \iconSpace \href{https://github.com/boredoms}{boredoms}
+        \hfill
+		\href{https://gitlab.com/voetschm}{voetschm} \vspace{2pt} \iconSpace \faicon{gitlab} 
+	}\\
+	}
+\end{switch}
+
 \end{center}
 \spaceCollapse
 \spaceCollapse
+
 % ------------- end header ------------- %
 
 
 % ------------- short description ------------- %
+\ifthenelse{\boolean{summary}}{
 \section{\color{highlight} \textbf{Summary}}
 \secStartSpace
 \begin{addmargin}[0.5em]{1em}
-	Outgoing PhD student interested in the design and implementation of algorithms.
-	My PhD work was focused on engineering algorithms for unsupervised learning problems.
-	I'm passionate about writing efficient code and low-level optimization.
-	I have excellent communication skills and am experienced in international collaboration.
+	\en{
+		Outgoing PhD student interested in the design and implementation of algorithms.
+		My PhD work was focused on engineering algorithms for unsupervised learning.
+		I am passionate about writing efficient code and low-level optimization.
+		Throughout my studies I also gained significant experience in managing projects and international collaboration.
+	}
 \end{addmargin}
 \secEndSpace
-\secEndSpace
+}{}
 % ------------- end experience ------------- %
 
 
 % ------------- work experience ------------- %
-\section{\color{highlight} \textbf{Work Experience}}
+\en{\section{
+	\color{highlight} \textbf{Work Experience}}}
+\de{\section{
+	\color{highlight} \textbf{Arbeitserfahrung}}}
 \secStartSpace
+\en{
 \begin{addmargin}[0.5em]{1em}
-	\workHeader{University of Vienna}{Prae-Doc Assistant}{Feb 2021 - Jan 2025}
+	\workHeader{University of Vienna}{Prae-Doc Assistant in the Theory and Applications of Algorithms (TAA) group}{Feb 2021 -}
 	\begin{itemize}
-		\item Part of the Theory and Applications of Algorithms (TAA) group, where I used methods of classical algorithms research to design algorithms for unsupervised learning objectives and implemented them in C++
-		\item Extensive experience in supervising and teaching students in mathematics, algorithms, data structures % mention concrete experience
-		\item Experience in oganizing projects, conferences and workshops
+		\setlength{\itemsep}{0em}
+		\item Researched how tools from classical algorithm research can be used to design efficient algorithms for unsupervised learning objectives 
+		\item Implemented, benchmarked and ran experiments with algorithms in C++
+		\item Co-supervised a Bachelor's thesis on "Graph Clustering: A Comparison of Louvain and Leiden" and a Masters thesis on the topic "Repetition Free Longest Common Subsequence". Taught the courses "Advanced Algorithms" and "Algorithms and Data Structures for Computational Science". Taught the exercise class for "Mathematical Foundations of Computer Science 1" 6 times. Assisted in teaching "Algorithms and Data Structures 2" once.
+%		\item Extensive experience in supervising and teaching students in mathematics, algorithms, data structures % mention concrete experience
+		\item Organized workshops and conferences, co-organizing the Queer in AI workshop at ICML 2024 and local organizer of the SEA 2024 conference
+		\item Collaborated internationally with researchers from academia and industry (Stanford, CMU, TU Munich, IIT Delhi, Google, ...)
+		\item Acted as an expert reviewer for high profile conferences (NeurIPS, KDD, ICML, ALENEX, ICALP, SEA, ...)
+		\ifthenelse{\not\boolean{awards}}{\item{Received the faculty award for significant contributions in the category publications in highest ranking venues in 2023}}{}
 %		\item Helped clean the floors in a team of \justlarge{3}
 %		      \bulletSpace
 %            \item Wrote \boldlarger{testable} and \boldlarger{well documented} code in Node.js/Nest.js backend and React frontend
@@ -171,28 +286,50 @@
 	% 	\item Was literally a chair and productivity was up \justlarge{120\%}
 	% \end{itemize}
 \end{addmargin}
+}
+\de{
+\begin{addmargin}[0.5em]{1em}
+	\workHeader{Universit\"at Wien}{Prae-Doc Assistent in der Forschungsgruppe Theory and Applications of Algorithms (TAA)}{Feb 2021 -}
+	\begin{itemize}
+		\setlength{\itemsep}{0em}
+		\item Forschung dar\"uber wie klassische Algorithmentheorie uns helfen kann effiziente Algorithmen f\"ur unsupervised Learning zu entdecken
+		\item Implementierung, Benchmarking von Algorithmen sowie Durchf\"uhrung von Experimenten in C++
+		\item Mitbetreuung von Bachelorstudenten (Thema: Graph Clustering: A Comparison of Louvain and Leiden) und Masterstudenten (Thema: Repetition Free Longest Common Subsequence). Unterricht der Kurse ``Advanced Algorithms'' und ``Algorithms and Data Structures for Computational Science'', sowie der PUE ``Mathematical Foundations of Computer Science 1''. Teaching Assistant f\"ur den Kurs ``Algorithms and Data Structures 2''.
+		\item Organisieren von Workshops und Konferenzen, Organisator des Queer in AI Workshop bei ICML 2024 und lokaler Organisator der SEA 2024 Konferenz
+		\item Erfahrung mit internationaler Kollaboration, sowohl Akademisch (Stanford, CMU, TU M\"unchen, IIT Delhi, ...) als auch Industrie (Google)
+		\item Expert Reviewer f\"ur hochrangige Konferenzen (NeurIPS, KDD, ICML, ALENEX, ICALP, SEA, ...)
+		\ifthenelse{\not\boolean{awards}}{\item{Erhalt des Fakult\"atsawards f\"ur signifikante Beitr\"age in der Kategorie Publikationen in h\"ochstrangigen Venues f\"ur 2023}}{}
+	\end{itemize}
+\end{addmargin}
+}
+
 \secEndSpace
 % ------------- end experience ------------- %
 
 
 
 % ------------- projects ------------- %
+\en{
 \section{\color{highlight} \textbf{Projects}}
+}
+\de{
+\section{\color{highlight} \textbf{Projekte}}
+}
 \secStartSpace
-
+\en{
 \begin{addmargin}[0.5em]{1em}
-
-		
 	% ------------- project 1 ------------- %
 	\projectHeader{XCut (published at KDD 2024)}{https://gitlab.com/vietaa/xcut}{May 2023 - Present}
 		
-	\noindent A graph clustering algorithm implemented using random walks and the theory of expander decomposition.
-	The algorithm sparsifies a graph to a tree and uses this to solve the normalized cut problem. Current state of the art solver for this problem.
-	\spaceCollapse
-	\begin{itemize}
-		\item \textbf{Technologies:} C++, CMake, Python, pandas, pyplot
-		      \bulletSpace
-	\end{itemize}
+	\noindent First practical algorithm using expander decomposition to cluster a graph.
+	XCut solves the normalized cut problem by sparsifying a graph to a tree and it is the current state of the art solver for this problem.
+	I helped design the algorithm, implemented it in \emph{C++}, and performed all experiments and data analysis using \emph{Python}. 
+	\ifthenelse{\not\boolean{awards}}{The project received the audience appreciation award at KDD 2024, which is awarded to papers with high public interest.}{}
+	% \spaceCollapse
+	% \begin{itemize}
+	% 	\item \textbf{Technologies:} C++, CMake, Python, pandas, pyplot
+	% 	      \bulletSpace
+	% \end{itemize}
 
      \vspace{8pt}
 	% ------------- end project 1 ------------- %
@@ -200,75 +337,153 @@
 	% ------------- project 2 ------------- %
 	\projectHeader{PRONE (published at NeurIPS 2023)}{https://github.com/boredoms/prone}{February 2023 - Present}
 		
-	\noindent New algorithm for solving Euclidean $k$-means and creating coresets for downstream applications in time $O(n \log n)$. 
+	\noindent New algorithm for solving Euclidean $k$-means and creating coresets for downstream applications. The algorithm has a running time of $O(nnz(A) + n \log n)$. 
 	Made available as a Python package for the data science community.
-	Main implementation in C++, with Cython wrappers provided to make it available to data scientists using python.
-	\spaceCollapse
-	\begin{itemize}
-		\item \textbf{Technologies:} C++, Python, Cython, numpy, pandas, pyplot
-		      \bulletSpace
-	\end{itemize}
+	Main implementation in \emph{C++}, with \emph{Cython} wrappers provided to make it available to data scientists using \emph{Python}.
+	I helped design the algorithm, implemented it in \emph{C++} for preliminary experiments, the data of wich was analyzed and plotted using \emph{pandas} and \emph{pyplot}, as well as provided it as a \emph{Python} package.
 	% ------------- end project 2 ------------- %
 \end{addmargin}
-\secEndSpace
+}
+\de{
+	\begin{addmargin}[0.5em]{1em}
+		% ------------- project 1 ------------- %
+		\projectHeader{XCut (publiziert bei KDD 2024)}{https://gitlab.com/vietaa/xcut}{Mai 2023 -}
+			
+		\noindent Der erste Algorithmus f\"ur Graph-Clustering der auf Expanderzerlegung basiert.
+		XCut l\"ost das Normalized Cut Problem auf Graphen durch Sparsifizierung des Graphen zu einem Baum und ist der derzeitige State-of-the-Art Solver f\"ur dieses Problem.
+		Ich habe am Design des Algorithmus gearbeitet, ihn in \emph{C++} implementiert und alle Experimente, sowie die Datenanalyse durchgef\"uhrt. F\"ur diese verwendete ich Python.
+		\ifthenelse{\not\boolean{awards}}{Das Projekt wurde mit dem Audience Appreciation Award der KDD 2024 geehrt, welcher an Paper mit hohem \"offentlichen Interesse geht.}{}
+		\vspace{8pt}
+		% ------------- end project 1 ------------- %
+	 
+		% ------------- project 2 ------------- %
+		\projectHeader{PRONE (publizert bei NeurIPS 2023)}{https://github.com/boredoms/prone}{Februar 2023 -}
+			
+		\noindent Ein neuer Algorithmus zum l\"osen des Euclidean $k$-means Problems und zum Erstellen von Coresets. Die Laufzeit des Algorithmus ist $O(nnz(A) + n \log n)$. 
+		Der Algorithmus ist als Python Package f\"ur Data Scientists verf\"ugbar.
+		Die Hautpimplementation des Algorithmus ist in \emph{C++}, mit \emph{Cython} Wrapper, um performante \emph{Python} bindings zur Verf\"ugung stellen zu k\"onnen.
+		Ich habe mitgeholfen den Algorithmus zu designen, ihn in \emph{C++} implementiert, alle Experimente und die Datenaufarbeitung durchgef\"uhrt.
+		% ------------- end project 2 ------------- %
+	\end{addmargin}	
+}
 \secEndSpace
 % ------------- end projects ------------- %
 
 
 % ------------- education ------------- %
-\section{\color{highlight} \textbf{Education}}
+\en{
+	\section{\color{highlight} \textbf{Education}}
+}
+\de{
+	\section{\color{highlight} \textbf{Ausbildung}}
+}
 \secStartSpace
-
+\en{
 \begin{addmargin}[0.5em]{1em}
 	\large\textbf{University of Vienna}\hfill \normalsize{February 2021 - (expected) March 2025}\\
 	\setlength\parindent{1cm} Dr. techn. Computer Science\\
-	Supervisors: Monika Henzinger and Kathrin Hanauer\\
-	\vspace{8pt}\hspace{-2pt}
+	Supervisors: Univ.-Prof. Dr. Monika Henzinger and Ass.-Prof. Dr. Kathrin Hanauer, B.Sc. M.SC.\\
+	\vspace{8pt}%\hspace{-2pt}
 	Thesis Title: Efficient Algorithms for Problems in Clustering and Fairness\\
-	\large\textbf{University of Vienna}\hfill \normalsize{October 2014 - August 2020}\\
-	\setlength\parindent{1cm} B.Sc. and M.Sc. Mathematics\\
-%	\large\textbf{University of Vienna}\hfill \normalsize{October 2014 - March 2018}\\
-%	 \setlength\parindent{1cm} B.Sc. Mathematics\\
+	\large\textbf{University of Vienna}\hfill \normalsize{March 2018 - August 2020}\\
+	\vspace{8pt}\hspace{-5pt}
+	\setlength\parindent{1cm} M.Sc. Mathematics, Thesis title: Cofinitary Groups\\
+	\large\textbf{University of Vienna}\hfill \normalsize{October 2014 - March 2018}\\
+	\setlength\parindent{1cm} B.Sc. Mathematics, Thesis title: Lattice Path Matroids\\
 \end{addmargin}
-\secEndSpace
+}
+\de{
+\begin{addmargin}[0.5em]{1em}
+	\large\textbf{Universit\"at Wien}\hfill \normalsize{Februar 2021 - (geplant) M\"arz 2025}\\
+	\setlength\parindent{1cm} Dr. techn. Informatik\\
+	Betreuer: Univ.-Prof. Dr. Monika Henzinger und Ass.-Prof. Dr. Kathrin Hanauer, B.Sc. M.SC.\\
+	\vspace{8pt}%\hspace{-2pt}
+	Thema: Efficient Algorithms for Problems in Clustering and Fairness\\
+	\large\textbf{Universit\"at Wien}\hfill \normalsize{M\"arz 2018 - August 2020}\\
+	\vspace{8pt}\hspace{-5pt}
+	\setlength\parindent{1cm} M.Sc. Mathematik, Thema der Abschlussarbeit: Cofinitary Groups\\
+	\large\textbf{Universit\"at Wien}\hfill \normalsize{Oktober 2014 - M\"arz 2018}\\
+	\setlength\parindent{1cm} B.Sc. Mathematik, Thema der Abschlussarbeit: Lattice Path Matroids\\
+\end{addmargin}
+}
 \secEndSpace
 % ------------- end education ------------- %
 
 
 % ------------- skills ------------- %
+\en{
 \section{\color{highlight} \textbf{Skills}}
+}
+\de{
+\section{\color{highlight} \textbf{F\"ahigkeiten}}
+}
 \secStartSpace
-
+\en{
 \begin{addmargin}[0.5em]{1em}
 	\setstretch{1.125}
-	\noindent \textbf{Languages:} C++, Python, Haskell, Rust, Java, German (native), English (fluent) \\
-	\noindent \textbf{Technology:} Linux, git, unix shell, cmake, poetry, clang-tidy \\
+	\noindent \textbf{Languages:} C++, Python, Haskell, Rust, German (native), English (fluent) \\
+	\noindent \textbf{Technology:} Linux, git, unix shell, cmake, poetry, clang-tidy, vim, Docker \\
 	\noindent \textbf{Libraries:} Blaze, OpenMP, OpenMPI, pandas, numpy, scikit-learn, pytorch \\
 \end{addmargin}
-\secEndSpace
+}
+\de{
+\begin{addmargin}[0.5em]{1em}
+	\setstretch{1.125}
+	\noindent \textbf{Sprachen:} C++, Python, Haskell, Rust, German (native), English (fluent) \\
+	\noindent \textbf{Technologien:} Linux, git, unix shell, cmake, poetry, clang-tidy, vim, Docker \\
+	\noindent \textbf{Libraries:} Blaze, OpenMP, OpenMPI, pandas, numpy, scikit-learn, pytorch \\
+\end{addmargin}
+
+}
 \secEndSpace
 % ------------- end skills ------------- %
 
 
 % ------------- achievements ------------- %
+\ifthenelse{\boolean{awards}}{
+\en{
 \section{\color{highlight} \textbf{Awards}}
+}
+\de{
+\section{\color{highlight} \textbf{Auszeichnungen}}
+}
 \secStartSpace
-
-\begin{addmargin}[0.5em]{1em}
-    \begin{itemize}[itemsep=-2.25pt, leftmargin=1.5em]
-		\item KDD 2024 Audience Appreciation Award \hfill August 2024
-    \end{itemize}
-\end{addmargin}
+\en{
+	\begin{addmargin}[0.5em]{1em}
+		\textbf{Publication Excellence TODO} \hfill December 2024 \\
+		\textbf{KDD 2024 Audience Appreciation Award} \hfill August 2024
+	\end{addmargin}
+}
+\de{
+	\begin{addmargin}[0.5em]{1em}
+		\textbf{Publication Excellence TODO} \hfill Dezember 2024 \\
+		\textbf{KDD 2024 Audience Appreciation Award} \hfill August 2024
+	\end{addmargin}
+}
 \secEndSpace
-\secEndSpace
+}{}
 % ------------- end achievements ------------- %
 
 % ------------- personal ------------- %
-\section{\color{highlight} \textbf{Personal Interests}}
-\secStartSpace
-\begin{addmargin}[0.5em]{1em}
-	Bouldering, Analog and Digital Photography, Electronics, Guitar
-\end{addmargin}
+\ifthenelse{\boolean{personal}}{
+	\en{
+		\section{\color{highlight} \textbf{Personal Interests}}
+	}
+	\de{
+		\section{\color{highlight} \textbf{Pers\"onliche Interessen}}
+	}
+	\secStartSpace
+	\en{
+	\begin{addmargin}[0.5em]{1em}
+		Bouldering, Analog and Digital Photography, Electronics, Guitar
+	\end{addmargin}
+	}
+	\de{
+	\begin{addmargin}[0.5em]{1em}
+		Bouldern, Analog- und Digitalphotographie, Mikroelektronik, Gitarre
+	\end{addmargin}
+	}
+}{}
 % ------------- end personal ------------- %
 
 
