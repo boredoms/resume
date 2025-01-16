@@ -1,0 +1,150 @@
+% custom command macros
+
+% helpers
+\newcommand{\ifthen}[2]{\ifthenelse{#1}{#2}{}}
+% bolder
+\newcommand{\boldlarger}[1]{{\large\textbf{\color{secondary}{#1}}}}
+% \newcommand{\boldlarger}[1]{{\textbf{\color{white}{#1}}}}
+\newcommand{\justlarge}[1]{{\large \textbf{#1}}}
+
+% formatting macros
+
+% setting up the formatting for the section
+% Sections formatting
+\titlespacing{\section}{0pt}{1px}{2ex}
+\titleformat{\section}{
+\vspace{-2pt}\raggedright\Large
+}{}{0em}{}[\color{secondary}\titlerule \vspace{-5pt}]
+
+% macro for a section of the resume
+\newcommand{\resumeSection}[2]{
+\section{\color{highlight}\textbf{#1}}
+\secStartSpace
+\begin{addmargin}[0.5em]{1em}
+	#2
+\end{addmargin}
+\secEndSpace
+}
+
+% macro for work experience header
+% arg 1 = header title
+% arg 2 = position title (subtitle (in italics)
+% arg 3 = date
+\newcommand{\workHeader}[3]{
+\noindent\large{\textbf{\textcolor{text-color}{#1}}}\hfill\normalsize{#3}\vspace{2pt}\\
+	\textit{#2}\vspace{-2pt}
+}
+
+% macro for work experience subheader
+\newcommand{\workSubHeader}[2]{
+    \noindent\textit{#1}\hfill\normalsize{#2}
+	\vspace{-2pt}
+}
+
+% macro for an item in the work-section. it uses the work-header macro to create an entry for the section
+\newcommand{\workItem}[4]{
+	\workHeader{#1}{#2}{#3}
+	\noindent #4
+}
+
+% similar macros for the other sections follow
+
+% macro for the project header
+\newcommand{\projectHeader}[4]{
+\noindent\href{#2}{\large\textbf{\textcolor{text-color}{#1}}}\hfill\normalsize{#3}\vspace{2pt}\\
+	\textit{#4}\vspace{2pt}
+}
+
+\newcommand{\projectItem}[5]{
+	\projectHeader{#1}{#2}{#3}{#4}\\
+	\noindent #5
+}
+
+\newcommand{\educationItem}[3]{
+	\noindent\large\textbf{#1}\hfill\normalsize{#2}\\
+	#3 \vspace{8pt}\\
+}
+
+\newcommand{\educationItemLast}[3]{
+	\noindent\large\textbf{#1}\hfill\normalsize{#2}\\
+	#3
+}
+
+\newcommand{\skillItem}[2]{
+	\noindent\textbf{#1}\hfill #2
+}
+
+\newcommand{\awardItem}[2]{
+	\noindent\textbf{#1}\hfill #2
+}
+
+% spacing
+\newcommand{\iconSpace}{\hspace{2px}}
+\newcommand{\bulletSpace}{\vspace{-4pt}}
+\newcommand{\hSpace}{\hspace{8px}}
+\newcommand{\secStartSpace}{\vspace{3pt}}
+\newcommand{\secEndSpace}{\vspace{5pt}}
+\newcommand{\spaceCollapse}{\vspace{-2pt}}
+\newcommand{\skillSpacing}{\setstretch{1.125}}
+
+% text colors
+\newcommand{\darkmodeColors}{
+	\definecolor{text-color}{HTML}{c8d9da}
+	\definecolor{highlight}{HTML}{eff7f8}
+	\definecolor{secondary}{HTML}{f0fafb}
+	\definecolor{link-color}{HTML}{eff7f8}
+	\definecolor{page-color}{HTML}{1b2333}
+}
+\newcommand{\lightmodeColors}{
+	\definecolor{text-color}{HTML}{333333}
+	\definecolor{highlight}{HTML}{2c446f}
+	\definecolor{secondary}{HTML}{2c446f}
+	\definecolor{link-color}{HTML}{eff7f8}
+	\definecolor{page-color}{HTML}{ffffff}
+}
+
+\newcommand{\configureColors}{
+\pagecolor{page-color}
+\color{text-color}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=link-color,
+    filecolor=highlight,
+    urlcolor=text-color,
+}
+}
+
+
+% commands for bilingual document
+
+% define a boolean based on the variable set in the -en.tex file
+\newboolean{xen}
+\ifdefined\isEnglish
+	\setboolean{xen}{true}
+\fi
+
+% same for german
+\newboolean{xde}
+\ifdefined\isGerman
+	\setboolean{xde}{true}
+\fi
+
+% commands to print a language block, uses otherlanguage environment to 
+% correctly enforce line-breaking and other stylistic things
+\newcommand{\en}[1]{\ifthen{\boolean{xen}}{#1}}
+\newcommand{\de}[1]{\ifthen{\boolean{xde}}{
+	\begin{otherlanguage}{ngerman}
+	#1
+	\end{otherlanguage}
+}}
+
+% case-switch implementation - from Thev (https://tex.stackexchange.com/questions/64131/implementing-switch-cases)
+\newcommand{\ifequals}[3]{\ifthenelse{\equal{#1}{#2}}{#3}{}}
+\newcommand{\case}[2]{#1 #2} % Dummy, so \renewcommand has something to overwrite...
+\newenvironment{switch}[1]{\renewcommand{\case}{\ifequals{#1}}}{}
+
+% define feature booleans
+\newboolean{darkmode}
+\newboolean{summary}
+\newboolean{awards}
+\newboolean{personal}
