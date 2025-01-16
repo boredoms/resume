@@ -18,3 +18,7 @@ Andrew Li says: "Please do not use Overleaf". I agree. Also, as of a few days ag
 ## License
 
 MIT
+
+## Special Thanks
+
+Anicca, for lots of feedback on the content. 😘
