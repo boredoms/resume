@@ -128,6 +128,9 @@
 	I am passionate about writing efficient code and low-level optimization.
 	Throughout my studies I also gained significant experience in managing projects and international collaboration.
 }}
+\de{\resumeSection{Zusammenfassung}{
+	% TODO
+}}
 }
 % ------------- end experience ------------- %
 
@@ -139,11 +142,11 @@
 	\begin{itemize}
 		\setlength{\itemsep}{0em}
 		\item Researched how tools from classical algorithm research can be used to design efficient algorithms for unsupervised learning objectives 
-		\item Implemented, benchmarked and ran experiments with algorithms in C++
-		\item Co-supervised a Bachelor's thesis on "Graph Clustering: A Comparison of Louvain and Leiden" and a Masters thesis on the topic "Repetition Free Longest Common Subsequence". Taught the courses "Advanced Algorithms" and "Algorithms and Data Structures for Computational Science". Taught the exercise class for "Mathematical Foundations of Computer Science 1" for six semesters. % Assisted in teaching "Algorithms and Data Structures 2" once.
+		\item Implemented, benchmarked, and optimized algorithms in C++ following algorithm engineering practices
 		\item Organized workshops and conferences, co-organizing the Queer in AI workshop at ICML 2024 and local organizer of the SEA 2024 conference
 		\item Collaborated internationally with researchers from academia and industry (Stanford, CMU, TU Munich, IIT Delhi, Google, ...)
 		\item Acted as an expert reviewer for high profile conferences (NeurIPS, KDD, ICML, ALENEX, ICALP, SEA, ...)
+		\item Co-supervised a Bachelor's thesis on "Graph Clustering: A Comparison of Louvain and Leiden" and a Masters thesis on the topic "Repetition Free Longest Common Subsequence". Taught the courses "Advanced Algorithms" and "Algorithms and Data Structures for Computational Science". Taught the exercise class for "Mathematical Foundations of Computer Science 1" for six semesters. % Assisted in teaching "Algorithms and Data Structures 2" once.
 		\ifthen{\not\boolean{awards}}{\item{Received the faculty award for significant contributions in the category Publications in Highest Ranking Venues in 2023}}
 %		\item Helped clean the floors in a team of \justlarge{3}
 %		      \bulletSpace
@@ -167,12 +170,12 @@
 	\workItem{Universit\"at Wien}{Prae-Doc Assistent in der Forschungsgruppe Theory and Applications of Algorithms (TAA)}{Feb 2021 - Laufend}{
 	\begin{itemize}
 		\setlength{\itemsep}{0em}
-		\item Forschung dar\"uber wie klassische Algorithmentheorie uns helfen kann effiziente Algorithmen f\"ur unsupervised Learning zu entdecken
-		\item Implementierung, Benchmarking von Algorithmen sowie Durchf\"uhrung von Experimenten in C++
-		\item Mitbetreuung von Bachelorstudenten (Thema: Graph Clustering: A Comparison of Louvain and Leiden) und Masterstudenten (Thema: Repetition Free Longest Common Subsequence). Unterricht der Kurse ``Advanced Algorithms'' und ``Algorithms and Data Structures for Computational Science'', sowie der PUE ``Mathematical Foundations of Computer Science 1''. Teaching Assistant f\"ur den Kurs ``Algorithms and Data Structures 2''.
-		\item Organisieren von Workshops und Konferenzen, Organisator des Queer in AI Workshop bei ICML 2024 und lokaler Organisator der SEA 2024 Konferenz
+		\item Forschung dar\"uber wie klassische Algorithmentheorie uns helfen kann effiziente Algorithmen f\"ur unsupervised Learning zu entwickeln
+		\item Implementierung, Benchmarking und Optimierung von Algorithmen in C++ nach Algorithm Engineering Praktiken
+		\item Organisationserfahrung bei Workshops und Konferenzen, z.B. Organisator des Queer in AI Workshop bei ICML 2024 und lokaler Organisator der SEA 2024 Konferenz
 		\item Erfahrung mit internationaler Kollaboration, sowohl Akademisch (Stanford, CMU, TU M\"unchen, IIT Delhi, ...) als auch Industrie (Google)
 		\item Expert Reviewer f\"ur hochrangige Konferenzen (NeurIPS, KDD, ICML, ALENEX, ICALP, SEA, ...)
+		\item Mitbetreuung von Bachelorstudenten (Thema: Graph Clustering: A Comparison of Louvain and Leiden) und Masterstudenten (Thema: Repetition Free Longest Common Subsequence). Unterricht der Kurse ``Advanced Algorithms'' und ``Algorithms and Data Structures for Computational Science'', sowie der ``PUE Mathematical Foundations of Computer Science 1''. %Teaching Assistant f\"ur den Kurs ``Algorithms and Data Structures 2''.
 		\ifthen{\not\boolean{awards}}{\item{Erhalt des Fakult\"atsawards f\"ur signifikante Beitr\"age in der Kategorie Publikationen in h\"ochstrangigen Venues f\"ur 2023}}
 	\end{itemize}
 	}
@@ -203,16 +206,19 @@
 }
 \de{
 \resumeSection{Projekte}{
-	\projectItem{XCut (publiziert bei KDD 2024)}{https://gitlab.com/vietaa/xcut}{Mai 2023 - Laufend}{}{
-		\noindent Der erste Algorithmus f\"ur Graph-Clustering der auf Expanderzerlegung basiert.
+	\projectItem{XCut (publiziert bei KDD 2024)}{https://gitlab.com/vietaa/xcut}{Mai 2023 - Laufend}{
+		Der erste Algorithmus f\"ur Graph-Clustering der auf Expanderzerlegung basiert.
+	}{
 		XCut l\"ost das Normalized Cut Problem auf Graphen durch Sparsifizierung des Graphen zu einem Baum und ist der derzeitige State-of-the-Art Solver f\"ur dieses Problem.
-		Ich habe am Design des Algorithmus gearbeitet, ihn in \emph{C++} implementiert und alle Experimente, sowie die Datenanalyse durchgef\"uhrt. F\"ur diese verwendete ich Python.
+		Ich habe am Design des Algorithmus gearbeitet, ihn in \emph{C++} implementiert und alle Experimente, sowie die Datenanalyse in Python durchgef\"uhrt.
 		\ifthen{\not\boolean{awards}}{Das Projekt wurde mit dem Audience Appreciation Award der KDD 2024 geehrt, welcher an Paper mit hohem \"offentlichen Interesse geht.}
 		\vspace{8pt}
 
 	}
-	\projectItem{PRONE (publizert bei NeurIPS 2023)}{https://github.com/boredoms/prone}{Februar 2023 - Laufend}{}{
-		\noindent Ein neuer Algorithmus zum l\"osen des Euclidean $k$-means Problems und zum Erstellen von Coresets. Die Laufzeit des Algorithmus ist $O(nnz(A) + n \log n)$. 
+	\projectItem{PRONE (publizert bei NeurIPS 2023)}{https://github.com/boredoms/prone}{Februar 2023 - Laufend}{
+		Ein neuer Algorithmus zum l\"osen des Euclidean $k$-means Problems und zum Erstellen von Coresets. 
+	}{
+		Die Laufzeit des Algorithmus ist $O(nnz(A) + n \log n)$. 
 		Der Algorithmus ist als Python Package f\"ur Data Scientists verf\"ugbar.
 		Die Hautpimplementation des Algorithmus ist in \emph{C++}, mit \emph{Cython} Wrapper, um performante \emph{Python} bindings zur Verf\"ugung stellen zu k\"onnen.
 		Ich habe den Algorithmus co-designed, ihn in \emph{C++} implementiert und alle Experimente und die Datenaufarbeitung durchgef\"uhrt.
@@ -240,7 +246,7 @@
 }
 \de{
 \resumeSection{Ausbildung}{
-	\educationItem{Universit\"at Wien}{Februar 2021 - (geplant) M\"arz 2025}{
+	\educationItem{Universit\"at Wien}{Februar 2021 - M\"arz 2025}{
 	Dr. techn. Informatik\\
 	Betreuer: Univ.-Prof. Dr. Monika Henzinger und Ass.-Prof. Dr. Kathrin Hanauer, B.Sc. M.SC.\\
 	Thema: Efficient Algorithms for Problems in Clustering and Fairness
