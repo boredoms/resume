@@ -306,3 +306,4 @@ TSWLatexianTemp*
 #*Notes.bib
 
 .vscode
+.DS_Store
