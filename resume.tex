@@ -2,7 +2,7 @@
 \documentclass[a4paper, 10pt]{article}
 
 % language setup
-\usepackage[main=english,ngerman]{babel}
+\usepackage[main=english,ngerman,japanese]{babel}
 
 % font
 \usepackage[T1]{fontenc}
@@ -10,7 +10,11 @@
 \usepackage{xifthen}
 % \usepackage[default]{raleway}
 
-\pdfgentounicode=1
+% this is for using a japanese language font, if you want to use another language that does not use latin characters, add the fonts here in a similar way
+\usepackage{luatexja-fontspec}
+\usepackage[noto-otf,fontspec,match]{luatexja-preset}
+
+% \pdfgentounicode=1
 
 % packages
 \usepackage[empty]{fullpage}
@@ -309,6 +313,11 @@
 	\de{
 	\resumeSection{Pers\"onliche Interessen}{
 		Bouldern, Analog- und Digitalphotographie, Mikroelektronik, Gitarre
+	}
+	}
+	\jp{
+	\resumeSection{私益}{
+		 ボルダリング, 撮影, 
 	}
 	}
 }

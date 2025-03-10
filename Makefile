@@ -30,11 +30,13 @@ all: resume-de.pdf resume-en.pdf
 # -interaction=nonstopmode keeps the pdflatex backend from stopping at a
 # missing file reference and interactively asking you for an alternative.
 
+# if you want to add additional languages, you can do that here as well
+
 resume-de.pdf: resume.tex
-	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make resume-de.tex
+	latexmk -pdflatex="lualatex -interaction=nonstopmode" -pdf -use-make resume-de.tex
 
 resume-en.pdf: resume.tex
-	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" -use-make resume-en.tex
+	latexmk -pdflatex="lualatex -interaction=nonstopmode" -pdf -use-make resume-en.tex
 
 clean:
 	latexmk -CA

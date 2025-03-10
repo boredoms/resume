@@ -129,11 +129,22 @@
 	\setboolean{xde}{true}
 \fi
 
+\newboolean{xjp}
+\ifdefined\isJapanese
+	\setboolean{xjp}{true}
+\fi
+
 % commands to print a language block, uses otherlanguage environment to 
 % correctly enforce line-breaking and other stylistic things
 \newcommand{\en}[1]{\ifthen{\boolean{xen}}{#1}}
 \newcommand{\de}[1]{\ifthen{\boolean{xde}}{
 	\begin{otherlanguage}{ngerman}
+	#1
+	\end{otherlanguage}
+}}
+% for testing non latin languages
+\newcommand{\jp}[1]{\ifthen{\boolean{xjp}}{
+	\begin{otherlanguage}{japanese}
 	#1
 	\end{otherlanguage}
 }}
