@@ -7,6 +7,10 @@ To add a new language you need to add a new makefile goal, a resume-xx.tex file 
 
 There are also a number of different header styles, as the original style was using a lot of whitespace.
 
+### UTF-8 support
+
+Based on some user feedback I have made the template able to accept UTF-8 text by switching the compilation to LuaLaTeX. As I don't feel like I am proficient enough in Chinese or Japanese to typeset my resume in it, I have only made a stub to demonstrate that it works. Check out the `resume-macros.tex` file for the `\jp` macro and see it in use in the main `resume.tex` file. Note that you might have to enable the correct fonts for your language still. 
+
 ## Preview
 
 ![resume](resume.png)
