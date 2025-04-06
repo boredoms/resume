@@ -145,7 +145,7 @@
 	\workItem{University of Vienna}{Prae-Doc Assistant in the Theory and Applications of Algorithms (TAA) group}{Feb 2021 - Ongoing}{
 	\begin{itemize}
 		\setlength{\itemsep}{0em}
-		\item Researched how tools from classical algorithm research can be used to design efficient algorithms for unsupervised learning objectives 
+		\item Researched how tools from classical algorithm research can be used to design efficient algorithms for unsupervised learning objectives to speed up AI applications
 		\item Implemented, benchmarked, and optimized algorithms in C++ following algorithm engineering practices
 		\item Organized workshops and conferences, co-organizing the Queer in AI workshop at ICML 2024 and local organizer of the SEA 2024 conference
 		\item Collaborated internationally with researchers from academia and industry (Stanford, CMU, TU Munich, IIT Delhi, Google, ...)
@@ -195,16 +195,13 @@ Unterrichten der Kurse ``Advanced Algorithms'' und ``Algorithms and Data Structu
 % ------------- projects ------------- %
 \en{
 \resumeSection{Projects}{
-	\projectItem{XCut (published at KDD 2024)}{https://gitlab.com/vietaa/xcut}{May 2023 - Ongoing}{First practical algorithm using expander decomposition to cluster a graph.}{XCut solves the normalized cut problem by sparsifying a graph to a tree and it is the current state of the art solver for this problem.
-		I co-designed the algorithm, implemented it in \emph{C++}, and performed all experiments and data analysis using \emph{Python}. 
+	\projectItem{XCut (published at KDD 2024)}{https://gitlab.com/vietaa/xcut}{May 2023 - Ongoing}{First practical algorithm using expander decomposition to cluster a graph.}{XCut solves the normalized cut problem by using new techniques for sparsifying a graph to a tree. It is the current state of the art solver for this problem.
+		I co-designed, implemented and optimized the algorithm in C++, and performed all experiments and data analysis using \emph{Python}. 
 		\ifthen{\not\boolean{awards}}{This project received the audience appreciation award at KDD 2024, which is awarded to papers that garner significant public interest.}
  	   \vspace{8pt}
 	}
 
-	\projectItem{PRONE (published at NeurIPS 2023)}{https://github.com/boredoms/prone}{February 2023 - Ongoing}{New algorithm for solving Euclidean $k$-means and creating coresets for downstream applications.}{The algorithm has a running time of $O(nnz(A) + n \log n)$. 
-		It has been made available as a \emph{Python} package, with its main implementation in \emph{C++}, and \emph{Cython} wrappers provided to make it available to data scientists.
-		I co-designed the algorithm, implemented it for preliminary experiments, analyzed and plotted data using \emph{pandas} and \emph{pyplot}, and provided the resulting algorithm as a Python package.
-	}
+	\projectItem{PRONE (published at NeurIPS 2023)}{https://github.com/boredoms/prone}{February 2023 - Ongoing}{New algorithm for solving $k$-means in time $O(n \log n)$ and creating coresets for downstream applications.}{The algorithm is available as a \emph{Python} package, with its main implementation in \emph{C++}, and \emph{Cython} wrappers provided to make it available to data scientists working in Python. I co-designed, implemented and optimized the algorithm in C++, ran experiments, and performed the data analysis using Python.}
 }
 }
 \de{
@@ -269,9 +266,10 @@ Unterrichten der Kurse ``Advanced Algorithms'' und ``Algorithms and Data Structu
 \en{
 \resumeSection{Skills}{
 	\skillSpacing
-	\skillItem{Languages}{C++, Python, Haskell, Rust, German (native), English (fluent)} \\
-	\skillItem{Skills}{Linux, git, SQL, Docker, automated testing, software benchmarking, CI/CD (Github Actions/GitLab CI), (mathematical) problem solving} \\
-	\skillItem{Libraries}{Blaze, OpenMP, OpenMPI, Catch2, pandas, numpy, scikit-learn, pytorch}
+	\skillItem{Languages}{C++, Python, Haskell, Rust, German (native), English (fluent)}\\
+	\skillItem{Skills}{Linux, git, SQL, Docker, automated testing and profiling, CI/CD (Github Actions/GitLab CI),}\\
+ 	\skillItem{}{mathematical problem solving, research skills}\\
+	\skillItem{Libraries}{OneTBB, OpenMP, OpenMPI, GTest, Catch2, pandas, numpy, scikit-learn, pytorch}
 }
 }
 \de{
@@ -306,7 +304,7 @@ Unterrichten der Kurse ``Advanced Algorithms'' und ``Algorithms and Data Structu
 \ifthen{\boolean{personal}}{
 	\en{
 	\resumeSection{Personal Interests}{
-		Bouldering, Analog and Digital Photography, Electronics, Guitar
+		Bouldering, Analog and Digital Photography, Electronics, Playing the Guitar
 	}
 	}
 	\de{
